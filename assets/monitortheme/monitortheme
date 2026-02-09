@@ -1,0 +1,21 @@
+#!/bin/bash
+# Monitor the color-scheme key and act on changes
+gsettings monitor org.gnome.desktop.interface color-scheme | while read -r line; do
+    # Extract the new value (e.g., 'prefer-dark' or 'default')
+    VALUE=$(echo "$line" | awk '{print $NF}' | tr -d "'")
+    
+    if [ "$VALUE" = "prefer-dark" ]; then
+        echo "Switched to Dark Mode"
+        dconf write /org/gnome/shell/extensions/user-theme/name "'MacTahoe-Dark'"
+        # Set libreoffice dark icons
+        soffice --nologo "macro:///Standard1.Module1.SetColibreDark"
+        gsettings set org.gnome.desktop.interface gtk-theme "MacTahoe-Dark"
+    else
+        echo "Switched to Light Mode"
+        dconf write /org/gnome/shell/extensions/user-theme/name "'MacTahoe-Light-solid'"
+        # set libreoffice light icons
+        soffice --nologo "macro:///Standard1.Module1.SetColibreLight"
+        gsettings set org.gnome.desktop.interface gtk-theme "MacTahoe-Light"
+    fi
+done
+

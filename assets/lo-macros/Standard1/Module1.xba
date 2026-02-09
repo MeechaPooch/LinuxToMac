@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Module1" script:language="StarBasic">REM  *****  BASIC  *****
+
+Sub Main
+
+End Sub
+
+Sub SetColibreDark
+    Dim keyNode As Object
+    
+    &apos; Load the Tools library to access GetRegistryKeyContent
+    With GlobalScope.Basiclibraries
+        If Not .IsLibraryLoaded(&quot;Tools&quot;) Then 
+            .LoadLibrary(&quot;Tools&quot;) 
+        End If
+    End With
+    
+    &apos; Access the internal registry for LibreOffice icon settings
+    keyNode = Tools.Misc.GetRegistryKeyContent(&quot;org.openoffice.Office.Common/Misc&quot;, True)
+    
+    &apos; Set the theme to Colibre Dark
+    &apos; Note: Internally, LibreOffice usually refers to this as &quot;colibre_dark&quot;
+    keyNode.SymbolStyle = &quot;colibre_dark&quot;
+    
+    &apos; Save the changes
+    keyNode.commitChanges
+End Sub
+
+Sub SetColibreLight
+    Dim keyNode As Object
+    
+    &apos; Load the Tools library to access GetRegistryKeyContent
+    With GlobalScope.Basiclibraries
+        If Not .IsLibraryLoaded(&quot;Tools&quot;) Then 
+            .LoadLibrary(&quot;Tools&quot;) 
+        End If
+    End With
+    
+    &apos; Access the internal registry for LibreOffice icon settings
+    keyNode = Tools.Misc.GetRegistryKeyContent(&quot;org.openoffice.Office.Common/Misc&quot;, True)
+    
+    &apos; Set the theme to Colibre Dark
+    &apos; Note: Internally, LibreOffice usually refers to this as &quot;colibre_dark&quot;
+    keyNode.SymbolStyle = &quot;colibre&quot;
+    
+    &apos; Save the changes
+    keyNode.commitChanges
+End Sub
+</script:module>
