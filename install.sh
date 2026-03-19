@@ -36,7 +36,7 @@ cd MacTahoe-gtk-theme
 # yesblur
 # ./install.sh -b -l --shell -i simple
 # noblur
-./install.sh -b -l --shell -i simple
+./install.sh -l --shell -i simple
 sudo ./tweaks.sh -g -nb  
 
 
