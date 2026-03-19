@@ -3,7 +3,7 @@ Description=Monitor Theme Script
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/home/micahpowch/.local/bin/monitortheme
+ExecStart=%h/.local/bin/monitortheme
 Restart=always
 RestartSec=5
 
