@@ -6,6 +6,8 @@ mkdir -p "$temp"
 
 # install extensions the online way
 
+gsettings set org.gnome.shell disable-extension-version-validation true
+
 curl -sL https://hkdb.github.io/app/getapp.sh | bash
 yes | app -y install pipx
 pipx install gnome-extensions-cli --system-site-packages
@@ -36,7 +38,7 @@ cd MacTahoe-gtk-theme
 # yesblur
 # ./install.sh -b -l --shell -i simple
 # noblur
-./install.sh -l --shell -i simple
+./install.sh -l --shell -i simple -o solid
 sudo ./tweaks.sh -g -nb  
 
 
@@ -93,6 +95,24 @@ cp -r "$mydir/assets/lo-macros/Standard1" ~/.config/libreoffice/4/user/basic/Sta
 
 
 
+cd /tmp/macx-install/MacTahoe-gtk-theme
+
+# firefox and flatpaks
+./tweaks.sh -F -o solid
+./tweaks.sh -f
+# flatpak theme override (credit vinceliuice)
+sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
+
+# todo through code, set all themes immediately (no gui tweaks app needed)
+# macos font! # NO NEED because adwaita sans already looks like macos font
+
+
+echo "alias l='ls'" | tee -a ~/.bashrc
+echo "alias lt='ls -tr'" | tee -a ~/.bashrc
+
+
+
+
 
 # install firefox optimization
 # Do this at end because I believe that the mactahoe install overwrites user.js
@@ -118,18 +138,12 @@ else
 fi
 
 
-
-# firefox and flatpaks
-./tweaks.sh -f default -F
-# flatpak theme override (credit vinceliuice)
-sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
-
-# todo through code, set all themes immediately (no gui tweaks app needed)
-# macos font! # NO NEED because adwaita sans already looks like macos font
-
-
-
 exit
+
+# FEDORA SPECIFIC
+
+# assume yes (micah fav)
+echo "assumeyes=True" | sudo tee -a /etc/dnf/dnf.conf
 
 
 yes | app -y install flatpak

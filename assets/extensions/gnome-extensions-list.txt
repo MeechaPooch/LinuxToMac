@@ -6,7 +6,6 @@ clipboard-history@alexsaveau.dev
 compiz-alike-magic-lamp-effect@hermes83.github.com
 custom-hot-corners-extended@G-dH.github.com
 dash-to-dock@micxgx.gmail.com
-ding@rastersoft.com
 disable-unredirect@exeos
 easy-peek@Markerto
 EasyScreenCast@iacopodeenosee.gmail.com
@@ -21,3 +20,4 @@ screentospace@dilzhan.dev
 steal-my-focus-window@steal-my-focus-window
 tilingshell@ferrarodomenico.com
 user-theme@gnome-shell-extensions.gcampax.github.com
+gtk4-ding@smedius.gitlab.com
