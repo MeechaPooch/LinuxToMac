@@ -7,15 +7,20 @@ gsettings monitor org.gnome.desktop.interface color-scheme | while read -r line;
     if [ "$VALUE" = "prefer-dark" ]; then
         echo "Switched to Dark Mode"
         dconf write /org/gnome/shell/extensions/user-theme/name "'MacTahoe-Dark'"
+
+        gsettings set org.gnome.desktop.interface gtk-theme "MacTahoe-Dark"
+        gsettings set org.gnome.desktop.interface icon-theme 'WhiteSur-dark'
         # Set libreoffice dark icons
         soffice --nologo "macro:///Standard1.Module1.SetColibreDark"
-        gsettings set org.gnome.desktop.interface gtk-theme "MacTahoe-Dark"
+                
     else
         echo "Switched to Light Mode"
         dconf write /org/gnome/shell/extensions/user-theme/name "'MacTahoe-Light-solid'"
+
+        gsettings set org.gnome.desktop.interface gtk-theme "MacTahoe-Light"
+        gsettings set org.gnome.desktop.interface icon-theme 'WhiteSur'
         # set libreoffice light icons
         soffice --nologo "macro:///Standard1.Module1.SetColibreLight"
-        gsettings set org.gnome.desktop.interface gtk-theme "MacTahoe-Light"
     fi
 done
 
